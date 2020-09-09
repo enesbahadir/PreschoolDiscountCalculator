@@ -12,7 +12,7 @@ public class DiscountService {
     private IPreschoolAccess preschool;
 
     /**
-     * Dependency Injection pattern'ı kullanılaark DiscounCalculator objesi oluşturur.
+     * Dependency Injection pattern'ı kullanılarak DiscounCalculator objesi oluşturur.
      * @param user ilgili kullanıcı
      * @param preschool ilgili anaokulu
      */
