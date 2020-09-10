@@ -1,7 +1,7 @@
 package com.company;
 
 /**
- * İndirim kuralları uygulandıktan sonra toplam indirimi hesaplayan sınıftır.
+ * İndirim kuralları için Kullanıcı ve Anaokulu bilgilerini ileten sınıftır.
  */
 public class DiscountCalculator implements IDiscountCalculator {
 
@@ -19,7 +19,7 @@ public class DiscountCalculator implements IDiscountCalculator {
     }
 
     /**
-     * Bu metodda sorunum var.
+     *
      * @param user
      * @param preschool
      * @return
@@ -29,16 +29,4 @@ public class DiscountCalculator implements IDiscountCalculator {
         return 0;
     }
 
-    /**
-     * Verilen parametrelerden ücretin yüzdesini hesaplayan metoddur.
-     * @param price Anaokulu ücreti
-     * @param percent İndirim yüzdesi
-     * @return
-     */
-    public long calculateDecreasePercentOfANumber(long price, long percent) {
-
-        if (percent == 0)
-            return price;
-        return price - (price * percent / 100);
-    }
 }
