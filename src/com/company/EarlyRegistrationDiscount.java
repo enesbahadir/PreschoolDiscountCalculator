@@ -1,7 +1,7 @@
 package com.company;
 
 /**
- * Kullanıcının erken kayıt indirimini tanımlayan sınıftır
+ * Kullanıcının erken kayıt indirimini tanımlayan sınıftır.
  */
 public class EarlyRegistrationDiscount extends DiscountDecorator {
 
