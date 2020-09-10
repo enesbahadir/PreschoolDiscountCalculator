@@ -6,11 +6,11 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        User user= ObjFactory.getUserObj();
+        User user= new User();
 
-        Preschool preschool = ObjFactory.getPreschoolObj();
-        Preschool ylb = ObjFactory.getPreschoolObj(PreschoolNames.YUNUS_EMRE_LALEBAHCESI,1000,"01/10/2020");
-        Preschool mlb = ObjFactory.getPreschoolObj(PreschoolNames.MADENLER_LALEBAHCESI,1200,"01/09/2020");
+        Preschool preschool = new Preschool();
+        Preschool ylb = new Preschool(PreschoolNames.YUNUS_EMRE_LALEBAHCESI,1000,"01/10/2020");
+        Preschool mlb = new Preschool(PreschoolNames.MADENLER_LALEBAHCESI,1200,"01/09/2020");
 
         Scanner keyboard = new Scanner(System.in);
         int i = 1;
@@ -112,11 +112,11 @@ public class Main {
 
         }
 
-        DiscountService d = new DiscountService(user,preschool);
-        long result = d.executeCalculateDiscountOfUser();
-        System.out.println(result);
-      //  System.out.println(user.getName() +" isimli kullanıcının "+ preschool.getPreschoolName()
-      //         + " isimli anaokuluna kayıt için ödeyeceği ücret "+ d.calculateDiscountOfUser(user,preschool) +" TL" );
+        DiscountDecorator discountDecorator = DiscountFactory.createDiscountDecorator( user, preschool);
+        long discount = discountDecorator.calculateDiscount( user, preschool );
+
+        System.out.println( discountDecorator.calculateDecreasePercentOfANumber
+                ( preschool.getPrice(), discount ));
 
     }
 }
