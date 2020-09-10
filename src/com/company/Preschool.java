@@ -3,7 +3,7 @@ package com.company;
 /**
  * Sistemde kayıtlı olan anaokulu bilgilerinin saklandığı sınıf
  */
-public class Preschool {
+public class Preschool implements IPreschoolAccess{
     private PreschoolNames preschoolName;
     private int price;
     private String 	endOfEarlyRegistrationDate;

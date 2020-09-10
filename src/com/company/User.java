@@ -3,7 +3,7 @@ package com.company;
 /**
  * Kullanıcıya ait olan bilgilerin saklandığı class
  */
-public class User {
+public class User implements IUserAccess{
 
     private String name;
     private TypeOfUser typeOfUser;
