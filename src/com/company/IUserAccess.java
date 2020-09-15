@@ -52,6 +52,9 @@ public interface IUserAccess {
      */
     void setWorkAnadoluLise(boolean workAnadoluLise);
 
+    OrganizationNames getOrganizationName() ;
+
+    void setOrganizationName(OrganizationNames organizationName) ;
 
 
 
