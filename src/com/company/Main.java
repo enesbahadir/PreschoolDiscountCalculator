@@ -10,7 +10,10 @@ public class Main {
 
         Preschool preschool = new Preschool();
         Preschool ylb = new Preschool(PreschoolNames.YUNUS_EMRE_LALEBAHCESI,1000,"01/10/2020");
+        ylb.setOrganizationName(OrganizationNames.ANADOLU);
         Preschool mlb = new Preschool(PreschoolNames.MADENLER_LALEBAHCESI,1200,"01/09/2020");
+        mlb.setOrganizationName(OrganizationNames.SAGLIKSEN);
+
 
         Scanner keyboard = new Scanner(System.in);
         int i = 1;
@@ -55,6 +58,7 @@ public class Main {
             userChoose = keyboard.nextLine();
             if (userChoose.equalsIgnoreCase("e")) {
                 user.setWorkSaglikSen(true);
+                user.setOrganizationName(OrganizationNames.SAGLIKSEN);
                 wrongInput = false;
                 break;
             }
@@ -73,7 +77,8 @@ public class Main {
         while (wrongInput) {
             userChoose = keyboard.nextLine();
             if (userChoose.equalsIgnoreCase("e")) {
-                user.setWorkSaglikSen(true);
+                //user.setWorkSaglikSen(true);
+                user.setOrganizationName(OrganizationNames.ANADOLU);
                 wrongInput = false;
                 break;
             }
@@ -112,11 +117,10 @@ public class Main {
 
         }
 
-        DiscountDecorator discountDecorator = DiscountFactory.createDiscountDecorator( user, preschool);
-        long discount = discountDecorator.calculateDiscount( user, preschool );
 
-        System.out.println( discountDecorator.calculateDecreasePercentOfANumber
-                ( preschool.getPrice(), discount ));
+        DiscountCalculator discountCalculator = new DiscountCalculator(user,preschool);
+        System.out.println(discountCalculator.calculateDiscount());
+
 
     }
 }
