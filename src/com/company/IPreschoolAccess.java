@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.List;
+
 /**
  * Preschool sınıfına erişmek için kullanılan interface
  */
@@ -52,6 +54,11 @@ public interface IPreschoolAccess {
       */
      void setEndOfEarlyRegistrationDate(String earlyRegistrationDate);
 
+     List<Discount> getDiscountList();
+     void setDiscountList(List<Discount> discountList);
 
 
+     OrganizationNames getOrganizationName();
+
+     void setOrganizationName(OrganizationNames organizationName);
 }
