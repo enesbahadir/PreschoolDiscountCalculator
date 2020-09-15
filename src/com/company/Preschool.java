@@ -1,5 +1,8 @@
 package com.company;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Sistemde kayıtlı olan anaokulu bilgilerinin saklandığı sınıf
  */
@@ -8,6 +11,11 @@ public class Preschool implements IPreschoolAccess{
     private int price;
     private String 	endOfEarlyRegistrationDate;
     private boolean isInEarlyRegistration;
+    private List <Discount> discountList;
+    private OrganizationNames organizationName;
+
+    public Preschool() {
+    }
 
     /**
      *
@@ -15,14 +23,13 @@ public class Preschool implements IPreschoolAccess{
      * @param price
      * @param endOfEarlyRegistrationDate
      */
-    public Preschool(PreschoolNames preschoolName, int price, String endOfEarlyRegistrationDate) {
+    public Preschool(PreschoolNames preschoolName, int price,
+                     String endOfEarlyRegistrationDate) {
         this.preschoolName = preschoolName;
         this.price = price;
         this.endOfEarlyRegistrationDate = endOfEarlyRegistrationDate;
         isInEarlyRegistration = EarlyRegistrationDateCalculator.isInEarlyRegistrationDate(endOfEarlyRegistrationDate);
-    }
-
-    public Preschool() {
+        discountList = DiscountManager.setDefaultDiscountByPreschool(this);
     }
 
     /**
@@ -89,5 +96,20 @@ public class Preschool implements IPreschoolAccess{
         this.endOfEarlyRegistrationDate = earlyRegistrationDate;
     }
 
+    public List<Discount> getDiscountList() {
+        return discountList;
+    }
+
+    public void setDiscountList(List<Discount> discountList) {
+        this.discountList = discountList;
+    }
+
+    public OrganizationNames getOrganizationName() {
+        return organizationName;
+    }
+
+    public void setOrganizationName(OrganizationNames organizationName) {
+        this.organizationName = organizationName;
+    }
 
 }

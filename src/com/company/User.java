@@ -7,6 +7,7 @@ public class User implements IUserAccess{
 
     private String name;
     private TypeOfUser typeOfUser;
+    private OrganizationNames organizationName;
     private boolean isWorkSaglikSen;
     private boolean isWorkAnadoluLise;
 
@@ -91,6 +92,13 @@ public class User implements IUserAccess{
         isWorkAnadoluLise = workAnadoluLise;
     }
 
+    public OrganizationNames getOrganizationName() {
+        return organizationName;
+    }
+
+    public void setOrganizationName(OrganizationNames organizationName) {
+        this.organizationName = organizationName;
+    }
 
 
 }
