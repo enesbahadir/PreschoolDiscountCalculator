@@ -90,8 +90,8 @@ public class Main {
         i=1;
         System.out.println("Lütfen kayıt olmak istediğiniz anaokulunun başında yazan numarayı giriniz");
 
-        for (PreschoolNames preschoolNames : PreschoolNames.values()) {
-            System.out.println(""+ i++ +"- " + preschoolNames);
+        for (PreschoolList preschoolNames : PreschoolList.values()) {
+            System.out.println(""+ i++ +"- " + preschoolNames.name());
         }
 
         while(wrongInput) {
