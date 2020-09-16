@@ -7,15 +7,13 @@ import java.util.List;
  * Sistemde kayıtlı olan anaokulu bilgilerinin saklandığı sınıf
  */
 public class Preschool implements IPreschoolAccess{
-    private PreschoolNames preschoolName;
-    private int price;
+
+    private String preschoolName;
+    private long price;
     private String 	endOfEarlyRegistrationDate;
     private boolean isInEarlyRegistration;
-    private List <Discount> discountList;
-    private OrganizationNames organizationName;
 
-    public Preschool() {
-    }
+    public Preschool() { }
 
     /**
      *
@@ -23,20 +21,19 @@ public class Preschool implements IPreschoolAccess{
      * @param price
      * @param endOfEarlyRegistrationDate
      */
-    public Preschool(PreschoolNames preschoolName, int price,
+    public Preschool(String preschoolName, long price,
                      String endOfEarlyRegistrationDate) {
         this.preschoolName = preschoolName;
         this.price = price;
         this.endOfEarlyRegistrationDate = endOfEarlyRegistrationDate;
         isInEarlyRegistration = EarlyRegistrationDateCalculator.isInEarlyRegistrationDate(endOfEarlyRegistrationDate);
-        discountList = DiscountManager.setDefaultDiscountByPreschool(this);
     }
 
     /**
      *
      * @return
      */
-    public PreschoolNames getPreschoolName() {
+    public String getPreschoolName() {
         return preschoolName;
     }
 
@@ -44,7 +41,7 @@ public class Preschool implements IPreschoolAccess{
      *
      * @param preschoolName
      */
-    public void setPreschoolName(PreschoolNames preschoolName) {
+    public void setPreschoolName(String preschoolName) {
         this.preschoolName = preschoolName;
     }
 
@@ -68,7 +65,7 @@ public class Preschool implements IPreschoolAccess{
      *
      * @return
      */
-    public int getPrice() {
+    public long getPrice() {
         return price;
     }
 
@@ -76,7 +73,7 @@ public class Preschool implements IPreschoolAccess{
      *
      * @param price
      */
-    public void setPrice(int price) {
+    public void setPrice(long price) {
         this.price = price;
     }
 
@@ -96,20 +93,5 @@ public class Preschool implements IPreschoolAccess{
         this.endOfEarlyRegistrationDate = earlyRegistrationDate;
     }
 
-    public List<Discount> getDiscountList() {
-        return discountList;
-    }
-
-    public void setDiscountList(List<Discount> discountList) {
-        this.discountList = discountList;
-    }
-
-    public OrganizationNames getOrganizationName() {
-        return organizationName;
-    }
-
-    public void setOrganizationName(OrganizationNames organizationName) {
-        this.organizationName = organizationName;
-    }
 
 }
