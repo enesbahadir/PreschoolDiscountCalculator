@@ -7,9 +7,7 @@ import java.util.List;
  *
  */
 public class DiscountManager {
-    /**
-     *
-     */
+
     static List<Discount> discountList;
 
     /**
@@ -18,7 +16,7 @@ public class DiscountManager {
      * @return
      */
      public static List<Discount> setDefaultDiscountByPreschool(IPreschoolAccess preschool) {
-        discountList = new ArrayList<>();
+         discountList = new ArrayList<>();
 
         for ( DefaultDiscountList defaultDiscount : DefaultDiscountList.values())
         {
@@ -34,11 +32,16 @@ public class DiscountManager {
      *
      * @return
      */
-    public List<Discount> getDiscountList() {
+    public static List<Discount> setDefaultDiscount() {
+        discountList = new ArrayList<>();
+
+        for ( DefaultDiscountList defaultDiscount : DefaultDiscountList.values())
+        {
+            discountList.add( defaultDiscount.discount);
+        }
         return discountList;
     }
 
-    public void setDiscountList(List<Discount> discountList) {
-        this.discountList = discountList;
-    }
+
+
 }
