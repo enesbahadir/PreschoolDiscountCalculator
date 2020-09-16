@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.Objects;
+
 /**
  * Kullanıcının ve anaokulunun bilgilerini alarak indirimin hesaplandığı sınıftır.
  */
@@ -26,14 +28,30 @@ public class DiscountCalculator  {
         long percent = 0;
         long amount = 0;
         Iterator iterator = createIterator();
+
         while(iterator.hasNext())
         {
             Discount discount = iterator.next();
-            percent += calculateEarlyRegistrationDiscount(discount);
-            percent += calculateOrganizationDiscount(discount);
-            percent += calculateUserTypeDiscount(discount);
+            switch (discount.getDiscountType()) {
+                case PERCENTAGE -> {
+                    percent = percent + calculateEarlyRegistrationDiscount(discount);
+                    percent = percent + calculateOrganizationDiscount(discount);
+                    percent = percent + calculateUserTypeDiscount(discount);
+                }
+                case AMOUNT -> {
+                    amount = amount + calculateEarlyRegistrationDiscount(discount);
+                    amount = amount + calculateOrganizationDiscount(discount);
+                    amount = amount + calculateUserTypeDiscount(discount);
+                }
+            }
         }
-        return percent;
+        return calculateNewPrice(percent,amount);
+    }
+
+    public long calculateNewPrice(long percent, long amount)
+    {
+        preschool.setPrice( preschool.getPrice() - (preschool.getPrice()*percent/100) - amount );
+        return preschool.getPrice();
     }
 
     /**
@@ -41,7 +59,7 @@ public class DiscountCalculator  {
      * @return
      */
     public Iterator createIterator () {
-        return new DiscountIterator(preschool.getDiscountList());
+        return new DiscountIterator(DiscountManager.setDefaultDiscountByPreschool(preschool) );
     }
 
     /**
@@ -72,8 +90,9 @@ public class DiscountCalculator  {
      * @return
      */
     public long calculateOrganizationDiscount (Discount discount) {
-       return discount.getOrganizationName().equals(user.getOrganizationName())
-                && discount.getOrganizationName().equals(preschool.getOrganizationName()) ? discount.getValue() : 0;
+       return discount.getOrganizationName() != null && Objects.equals(discount.getOrganizationName(),
+               user.getOrganizationName())
+                 ? discount.getValue() : 0;
 
     }
 
