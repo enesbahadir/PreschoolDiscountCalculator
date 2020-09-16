@@ -8,11 +8,8 @@ public class Main {
     public static void main(String[] args) {
         User user= new User();
 
-        Preschool preschool = new Preschool();
-        Preschool ylb = new Preschool(PreschoolNames.YUNUS_EMRE_LALEBAHCESI,1000,"01/10/2020");
-        ylb.setOrganizationName(OrganizationNames.ANADOLU);
-        Preschool mlb = new Preschool(PreschoolNames.MADENLER_LALEBAHCESI,1200,"01/09/2020");
-        mlb.setOrganizationName(OrganizationNames.SAGLIKSEN);
+        IPreschoolAccess preschool = new Preschool();
+        PreschoolManager.setDefaultPreschoolList();
 
 
         Scanner keyboard = new Scanner(System.in);
@@ -57,13 +54,12 @@ public class Main {
         while (wrongInput) {
             userChoose = keyboard.nextLine();
             if (userChoose.equalsIgnoreCase("e")) {
-                user.setWorkSaglikSen(true);
                 user.setOrganizationName(OrganizationNames.SAGLIKSEN);
                 wrongInput = false;
                 break;
             }
             else if (userChoose.equalsIgnoreCase("h")) {
-                user.setWorkSaglikSen(false);
+
                 wrongInput = false;
                 break;
             }
@@ -77,13 +73,12 @@ public class Main {
         while (wrongInput) {
             userChoose = keyboard.nextLine();
             if (userChoose.equalsIgnoreCase("e")) {
-                //user.setWorkSaglikSen(true);
                 user.setOrganizationName(OrganizationNames.ANADOLU);
                 wrongInput = false;
                 break;
             }
             else if (userChoose.equalsIgnoreCase("h")) {
-                user.setWorkSaglikSen(false);
+
                 wrongInput = false;
                 break;
             }
@@ -103,12 +98,12 @@ public class Main {
             preschoolChoose = keyboard.nextLine();
             switch (preschoolChoose) {
                 case "1" :
-                    preschool = ylb;
+                    preschool = PreschoolManager.preschoolList.get(0);
                     wrongInput = false;
                     break;
 
                 case "2" :
-                    preschool = mlb;
+                    preschool = PreschoolManager.preschoolList.get(1);
                     wrongInput = false;
                     break;
                 default:

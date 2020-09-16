@@ -1,22 +1,21 @@
 package com.company;
 
-import java.util.List;
-
 /**
  * Preschool sınıfına erişmek için kullanılan interface
  */
 public interface IPreschoolAccess {
+
      /**
       * Anaokulu adlarına erişim için kullanılan get metodu
       * @return Anaokulu Adı
       */
-     PreschoolNames getPreschoolName();
+     String getPreschoolName();
 
      /**
       * Anaokulu adını değiştiemek için kullanılan set metodu
       * @param preschoolName Anaokulu Adı
       */
-     void setPreschoolName(PreschoolNames preschoolName);
+     void setPreschoolName(String preschoolName);
 
      /**
       * Anaokulunun erken kayıt dönemi içerisinde olup - olmadığını dönen isInEarlyRegistration'a erişim metodu
@@ -34,13 +33,13 @@ public interface IPreschoolAccess {
       * Anaokulun ücret bilgisine erişmek için kullanılan get metodu
       * @return Anaokulunun ücret bilgisi
       */
-     int getPrice();
+     long getPrice();
 
      /**
       *Anaokulun ücret bilgisine erişmek için kullanılan get metodu
       * @param price Anaokulu ücret bilgisi
       */
-     void setPrice(int price);
+     void setPrice(long price);
 
      /**
       * Anaokulu erken kayıt dönemi sonu bilgisine erişmek için kullanılan get metodu
@@ -54,11 +53,4 @@ public interface IPreschoolAccess {
       */
      void setEndOfEarlyRegistrationDate(String earlyRegistrationDate);
 
-     List<Discount> getDiscountList();
-     void setDiscountList(List<Discount> discountList);
-
-
-     OrganizationNames getOrganizationName();
-
-     void setOrganizationName(OrganizationNames organizationName);
 }

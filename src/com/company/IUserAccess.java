@@ -28,29 +28,6 @@ public interface IUserAccess {
      */
     void setTypeOfUser(TypeOfUser typeOfUser);
 
-    /**
-     *
-     * @return
-     */
-    boolean isWorkSaglikSen();
-
-    /**
-     *
-     * @param workSaglikSen
-     */
-    void setWorkSaglikSen(boolean workSaglikSen);
-
-    /**
-     *
-     * @return
-     */
-    boolean isWorkAnadoluLise();
-
-    /**
-     *
-     * @param workAnadoluLise
-     */
-    void setWorkAnadoluLise(boolean workAnadoluLise);
 
     OrganizationNames getOrganizationName() ;
 
