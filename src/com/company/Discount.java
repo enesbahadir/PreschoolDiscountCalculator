@@ -12,10 +12,10 @@ public class Discount {
     private DiscountType discountType;
     private List<TypeOfUser> typeOfUser;
     private OrganizationNames organizationName;
-    private List<PreschoolNames> preschoolNames;
+    private List<String> preschoolNames;
 
     public Discount(String name, long value, DiscountType discountType, List<TypeOfUser> typeOfUser,
-                    OrganizationNames organizationName, List<PreschoolNames> preschoolNames) {
+                    OrganizationNames organizationName, List<String> preschoolNames) {
         this.name = name;
         this.value = value;
         this.discountType = discountType;
@@ -64,12 +64,11 @@ public class Discount {
         this.organizationName = organizationName;
     }
 
-
-    public List<PreschoolNames> getPreschoolNames() {
+    public List<String> getPreschoolNames() {
         return preschoolNames;
     }
 
-    public void setPreschoolNames(List<PreschoolNames> preschoolNames) {
+    public void setPreschoolNames(List<String> preschoolNames) {
         this.preschoolNames = preschoolNames;
     }
 
