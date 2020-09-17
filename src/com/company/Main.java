@@ -8,9 +8,9 @@ public class Main {
     public static void main(String[] args) {
         User user= new User();
 
-        Preschool preschool = new Preschool();
-        Preschool ylb = new Preschool(PreschoolNames.YUNUS_EMRE_LALEBAHCESI,1000,"01/10/2020");
-        Preschool mlb = new Preschool(PreschoolNames.MADENLER_LALEBAHCESI,1200,"01/09/2020");
+        IPreschoolAccess preschool = new Preschool();
+        PreschoolManager.setDefaultPreschoolList();
+
 
         Scanner keyboard = new Scanner(System.in);
         int i = 1;
@@ -54,12 +54,12 @@ public class Main {
         while (wrongInput) {
             userChoose = keyboard.nextLine();
             if (userChoose.equalsIgnoreCase("e")) {
-                user.setWorkSaglikSen(true);
+                user.setOrganizationName(OrganizationNames.SAGLIKSEN);
                 wrongInput = false;
                 break;
             }
             else if (userChoose.equalsIgnoreCase("h")) {
-                user.setWorkSaglikSen(false);
+
                 wrongInput = false;
                 break;
             }
@@ -73,12 +73,12 @@ public class Main {
         while (wrongInput) {
             userChoose = keyboard.nextLine();
             if (userChoose.equalsIgnoreCase("e")) {
-                user.setWorkSaglikSen(true);
+                user.setOrganizationName(OrganizationNames.ANADOLU);
                 wrongInput = false;
                 break;
             }
             else if (userChoose.equalsIgnoreCase("h")) {
-                user.setWorkSaglikSen(false);
+
                 wrongInput = false;
                 break;
             }
@@ -90,20 +90,20 @@ public class Main {
         i=1;
         System.out.println("Lütfen kayıt olmak istediğiniz anaokulunun başında yazan numarayı giriniz");
 
-        for (PreschoolNames preschoolNames : PreschoolNames.values()) {
-            System.out.println(""+ i++ +"- " + preschoolNames);
+        for (PreschoolList preschoolNames : PreschoolList.values()) {
+            System.out.println(""+ i++ +"- " + preschoolNames.name());
         }
 
         while(wrongInput) {
             preschoolChoose = keyboard.nextLine();
             switch (preschoolChoose) {
                 case "1" :
-                    preschool = ylb;
+                    preschool = PreschoolManager.preschoolList.get(0);
                     wrongInput = false;
                     break;
 
                 case "2" :
-                    preschool = mlb;
+                    preschool = PreschoolManager.preschoolList.get(1);
                     wrongInput = false;
                     break;
                 default:
@@ -112,11 +112,10 @@ public class Main {
 
         }
 
-        DiscountDecorator discountDecorator = DiscountFactory.createDiscountDecorator( user, preschool);
-        long discount = discountDecorator.calculateDiscount( user, preschool );
 
-        System.out.println( discountDecorator.calculateDecreasePercentOfANumber
-                ( preschool.getPrice(), discount ));
+        DiscountCalculator discountCalculator = new DiscountCalculator(user,preschool);
+        System.out.println(discountCalculator.calculateDiscount());
+
 
     }
 }
