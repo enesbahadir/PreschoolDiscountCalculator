@@ -9,6 +9,7 @@ public class DiscountCalculator  {
 
     private IUserAccess user;
     private IPreschoolAccess preschool;
+    private Iterator iterator;
 
     /**
      * Kullanıcı ve anaokulu bilgilerinin alındığı constructor metodudur.
@@ -18,48 +19,54 @@ public class DiscountCalculator  {
     public DiscountCalculator(IUserAccess user, IPreschoolAccess preschool) {
         this.user = user;
         this.preschool = preschool;
+
+        // @TODO dependency
+        ConcreteCollection concreteCollection = new ConcreteCollection();
+        iterator = concreteCollection.createDiscountIterator(preschool);
     }
 
     /**
-     * Üzerinde çalışılmaya devam ediliyor.
+     *
      * @return
      */
     public long calculateDiscount() {
+
         long percent = 0;
         long amount = 0;
-        Iterator iterator = createIterator();
 
         while(iterator.hasNext())
         {
             Discount discount = iterator.next();
+
             switch (discount.getDiscountType()) {
-                case PERCENTAGE -> {
-                    percent = percent + calculateEarlyRegistrationDiscount(discount);
-                    percent = percent + calculateOrganizationDiscount(discount);
-                    percent = percent + calculateUserTypeDiscount(discount);
-                }
-                case AMOUNT -> {
-                    amount = amount + calculateEarlyRegistrationDiscount(discount);
-                    amount = amount + calculateOrganizationDiscount(discount);
-                    amount = amount + calculateUserTypeDiscount(discount);
-                }
+                case PERCENTAGE -> percent += executeCalculateMethods(discount);
+                case AMOUNT -> amount += executeCalculateMethods(discount);
             }
         }
-        return calculateNewPrice(percent,amount);
-    }
-
-    public long calculateNewPrice(long percent, long amount)
-    {
-        preschool.setPrice( preschool.getPrice() - (preschool.getPrice()*percent/100) - amount );
-        return preschool.getPrice();
+        return calculatePriceWithDiscount(percent,amount);
     }
 
     /**
-     * Anaokulunun sahip olduğu indirim listesinde ilerlemeyi sağlayan iterator sınıfının objesini oluşturur.
+     *
+     * @param discount
      * @return
      */
-    public Iterator createIterator () {
-        return new DiscountIterator(DiscountManager.setDefaultDiscountByPreschool(preschool) );
+    public long executeCalculateMethods(Discount discount) {
+        return calculateEarlyRegistrationDiscount(discount) +
+                calculateOrganizationDiscount(discount) +
+                calculateUserTypeDiscount(discount);
+    }
+
+    /**
+     *
+     * @param percent
+     * @param amount
+     * @return
+     */
+    public long calculatePriceWithDiscount(long percent, long amount)
+    {
+        return preschool.getPrice() - (preschool.getPrice()*percent/100) - amount ;
+
     }
 
     /**
@@ -68,8 +75,12 @@ public class DiscountCalculator  {
      * @return
      */
     public long calculateEarlyRegistrationDiscount(Discount discount) {
-        return discount.getName().equals(DefaultDiscountList.EARLY_REGISTRATION_DISCOUNT.name())
-                && preschool.isInEarlyRegistration() ? discount.getValue() : 0;
+        if(discount.getDiscountName().equals(DefaultDiscountList.EARLY_REGISTRATION_DISCOUNT.name())
+                && preschool.isInEarlyRegistration())
+        {
+            return discount.getPreschoolNamesAndTheirPrice().get(preschool.getPreschoolName());
+        }
+        return 0;
     }
 
     /**
@@ -79,8 +90,12 @@ public class DiscountCalculator  {
      * @return
      */
     public long calculateUserTypeDiscount(Discount discount) {
-        return discount.getTypeOfUser().size() == 1 && discount.getTypeOfUser().contains(user.getTypeOfUser())
-                ? discount.getValue() : 0;
+        if( discount.getTypeOfUser().size() == 1 && discount.getTypeOfUser().contains(user.getTypeOfUser()))
+        {
+            return discount.getPreschoolNamesAndTheirPrice().get(preschool.getPreschoolName());
+        }
+        return 0;
+
     }
 
     /**
@@ -90,10 +105,10 @@ public class DiscountCalculator  {
      * @return
      */
     public long calculateOrganizationDiscount (Discount discount) {
-       return discount.getOrganizationName() != null && Objects.equals(discount.getOrganizationName(),
-               user.getOrganizationName())
-                 ? discount.getValue() : 0;
-
+        if(discount.getOrganizationName() != null &&
+                Objects.equals(discount.getOrganizationName(), user.getOrganizationName()) )
+            return discount.getPreschoolNamesAndTheirPrice().get(preschool.getPreschoolName());
+        return 0;
     }
 
 }

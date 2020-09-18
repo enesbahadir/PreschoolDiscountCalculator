@@ -1,8 +1,5 @@
 package com.company;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Sistemde kayıtlı olan anaokulu bilgilerinin saklandığı sınıf
  */
@@ -91,6 +88,7 @@ public class Preschool implements IPreschoolAccess{
      */
     public void setEndOfEarlyRegistrationDate(String earlyRegistrationDate) {
         this.endOfEarlyRegistrationDate = earlyRegistrationDate;
+        isInEarlyRegistration = EarlyRegistrationDateCalculator.isInEarlyRegistrationDate(endOfEarlyRegistrationDate);
     }
 
 

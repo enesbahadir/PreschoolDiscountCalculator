@@ -6,7 +6,7 @@ package com.company;
 public class User implements IUserAccess{
 
     private String name;
-    private TypeOfUser typeOfUser;
+    private UserType userType;
     private OrganizationNames organizationName;
 
     public User() {
@@ -15,11 +15,11 @@ public class User implements IUserAccess{
     /**
      * Constructor metodu
      * @param name kullanıcının ismi
-     * @param typeOfUser kullanıcının tipi
+     * @param userType kullanıcının tipi
      */
-    public User(String name,TypeOfUser typeOfUser) {
+    public User(String name, UserType userType) {
         this.name = name;
-        this.typeOfUser = typeOfUser;
+        this.userType = userType;
     }
 
     /**
@@ -42,16 +42,16 @@ public class User implements IUserAccess{
      *
      * @return
      */
-    public TypeOfUser getTypeOfUser() {
-        return typeOfUser;
+    public UserType getTypeOfUser() {
+        return userType;
     }
 
     /**
      *
-     * @param typeOfUser
+     * @param userType
      */
-    public void setTypeOfUser(TypeOfUser typeOfUser) {
-        this.typeOfUser = typeOfUser;
+    public void setTypeOfUser(UserType userType) {
+        this.userType = userType;
     }
 
     /**

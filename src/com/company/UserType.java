@@ -3,6 +3,6 @@ package com.company;
 /**
  * Sistemde tanımlı kullanıcı tipleri
  */
-public enum TypeOfUser {
+public enum UserType {
     PERSONEL, IHVAN, STANDART
 }

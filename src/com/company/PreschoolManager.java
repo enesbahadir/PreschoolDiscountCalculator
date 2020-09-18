@@ -4,16 +4,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PreschoolManager {
-    static List<IPreschoolAccess> preschoolList = new ArrayList<>();
 
-    public static List<IPreschoolAccess> setDefaultPreschoolList() {
-        for (PreschoolList preschools : PreschoolList.values() )
-        {
-            preschoolList.add(preschools.preschool);
+    /**
+     *
+     * @param preschool
+     */
+    public static void addNewPreschool(IPreschoolAccess preschool) {
+        if (Database.preschoolList.contains(preschool)) {
+            return;
         }
-        return preschoolList;
+        Database.preschoolList.add(preschool);
+
     }
 
+    /**
+     *
+     * @param preschool
+     */
+    public static void deletePreschoolFromList(IPreschoolAccess preschool)
+    {
+        Database.preschoolList.remove(preschool);
+    }
 
-
+    //setPreschool
 }
