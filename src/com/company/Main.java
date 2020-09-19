@@ -1,9 +1,6 @@
 package com.company;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     static IUserAccess user= new User();
@@ -61,8 +58,6 @@ public class Main {
             }
         }
     }
-
-
 
     public static void userInputForDiscount() {
 
@@ -234,9 +229,17 @@ public class Main {
 
         System.out.println("Lütfen eklemek istediğiniz indirimin uygulanacağı kişi türünü seçiniz: ");
         PrintHelper.printUserType();
-        userChoose = keyboard.next();
         List<UserType> userTypeChoose = new ArrayList<>();
-        userTypeChoose.add(UserType.valueOf(userChoose));
+
+        while(true)
+        {
+            System.out.println("Eklemeden çıkmak için lütfen 'h' tuşuna basınız  ");
+            userChoose = keyboard.next();
+            if(userChoose.equalsIgnoreCase("h"))
+                break;
+            userTypeChoose.add(UserType.valueOf(userChoose));
+        }
+
 
         System.out.println("Lütfen eklemek istediğiniz indirimin uygulanacağı kurumu seçiniz: ");
         PrintHelper.printOrganizationNames();
@@ -245,19 +248,29 @@ public class Main {
 
         System.out.println("Lütfen eklemek istediğiniz indirimin uygulanacağı anaokulunu ve indirim miktarını giriniz:");
         PrintHelper.printPreschoolList();
-        userChoose = keyboard.next();
-        long priceChoose = keyboard.nextLong();
+        Map<String, Long > preschoolNamesAndTheirDiscounts = new HashMap<>();
+        while(true) {
+            System.out.println("Eklemeden çıkmak için lütfen 'h' tuşuna basınız  ");
+            userChoose = keyboard.next();
+            if (userChoose.equalsIgnoreCase("h"))
+                break;
+            long discountChoose = keyboard.nextLong();
+            preschoolNamesAndTheirDiscounts.putIfAbsent(userChoose, discountChoose);
+        }
 
-        String finalUserChoose = userChoose;
         DiscountManager.addNewDiscount(new Discount(name, discountTypeChoose, userTypeChoose, organizationNamesChoose
-        , new HashMap<>() {{
-            put(finalUserChoose,priceChoose); }}));
+        , preschoolNamesAndTheirDiscounts));
 
         PrintHelper.printDiscountList();
 
     }
 
     public static void deleteDiscount() {
+        PrintHelper.printDiscountList();
+        System.out.println("Lütfen çıkarmak istediğiniz indirimin kodunu giriniz: ");
+        int choose = keyboard.nextInt();
+        Discount discount = Database.discounts.get(choose-1);
+        DiscountManager.deleteDiscount(discount);
         PrintHelper.printDiscountList();
     }
 

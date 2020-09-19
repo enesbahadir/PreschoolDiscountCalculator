@@ -16,4 +16,6 @@ public interface Iterator {
       */
      Discount next();
 
+
+
 }

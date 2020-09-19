@@ -31,7 +31,8 @@ public class Database {
     public static List<Discount> setDiscountByPreschool(IPreschoolAccess preschool) {
 
         for (Discount discount : discounts) {
-            if (discount.getPreschoolNamesAndTheirPrice().containsKey(preschool.getPreschoolName()))
+            if (discount.getPreschoolNamesAndTheirDiscounts().containsKey(preschool.getPreschoolName())
+                    && !discountByPreschool.contains(discount))
                 discountByPreschool.add(discount);
         }
         return discountByPreschool;

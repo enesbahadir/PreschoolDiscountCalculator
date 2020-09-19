@@ -12,15 +12,15 @@ public class Discount {
     private DiscountType discountType;
     private List<UserType> userType;
     private OrganizationNames organizationName;
-    private Map<String, Long > preschoolNamesAndTheirPrice;
+    private Map<String, Long > preschoolNamesAndTheirDiscounts;
 
     public Discount(String discountName, DiscountType discountType, List<UserType> userType,
-                    OrganizationNames organizationName, Map<String, Long> preschoolNamesAndTheirPrice) {
+                    OrganizationNames organizationName, Map<String, Long> preschoolNamesAndTheirDiscounts) {
         this.discountName = discountName;
         this.discountType = discountType;
         this.userType = userType;
         this.organizationName = organizationName;
-        this.preschoolNamesAndTheirPrice = preschoolNamesAndTheirPrice;
+        this.preschoolNamesAndTheirDiscounts = preschoolNamesAndTheirDiscounts;
     }
 
     public String getDiscountName() {
@@ -55,11 +55,11 @@ public class Discount {
         this.organizationName = organizationName;
     }
 
-    public Map<String, Long> getPreschoolNamesAndTheirPrice() {
-        return preschoolNamesAndTheirPrice;
+    public Map<String, Long> getPreschoolNamesAndTheirDiscounts() {
+        return preschoolNamesAndTheirDiscounts;
     }
 
-    public void setPreschoolNamesAndTheirPrice(Map<String, Long> preschoolNamesAndTheirPrice) {
-        this.preschoolNamesAndTheirPrice = preschoolNamesAndTheirPrice;
+    public void setPreschoolNamesAndTheirDiscounts(Map<String, Long> preschoolNamesAndTheirDiscounts) {
+        this.preschoolNamesAndTheirDiscounts = preschoolNamesAndTheirDiscounts;
     }
 }

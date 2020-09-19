@@ -43,6 +43,7 @@ public class DiscountCalculator  {
                 case AMOUNT -> amount += executeCalculateMethods(discount);
             }
         }
+
         return calculatePriceWithDiscount(percent,amount);
     }
 
@@ -78,7 +79,7 @@ public class DiscountCalculator  {
         if(discount.getDiscountName().equals(DefaultDiscountList.EARLY_REGISTRATION_DISCOUNT.name())
                 && preschool.isInEarlyRegistration())
         {
-            return discount.getPreschoolNamesAndTheirPrice().get(preschool.getPreschoolName());
+            return discount.getPreschoolNamesAndTheirDiscounts().get(preschool.getPreschoolName());
         }
         return 0;
     }
@@ -92,7 +93,7 @@ public class DiscountCalculator  {
     public long calculateUserTypeDiscount(Discount discount) {
         if( discount.getTypeOfUser().size() == 1 && discount.getTypeOfUser().contains(user.getTypeOfUser()))
         {
-            return discount.getPreschoolNamesAndTheirPrice().get(preschool.getPreschoolName());
+            return discount.getPreschoolNamesAndTheirDiscounts().get(preschool.getPreschoolName());
         }
         return 0;
 
@@ -107,7 +108,7 @@ public class DiscountCalculator  {
     public long calculateOrganizationDiscount (Discount discount) {
         if(discount.getOrganizationName() != null &&
                 Objects.equals(discount.getOrganizationName(), user.getOrganizationName()) )
-            return discount.getPreschoolNamesAndTheirPrice().get(preschool.getPreschoolName());
+            return discount.getPreschoolNamesAndTheirDiscounts().get(preschool.getPreschoolName());
         return 0;
     }
 
