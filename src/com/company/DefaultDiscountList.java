@@ -1,57 +1,58 @@
 package com.company;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Programın açılışında tanımlı olan indirim listedir.
  */
 public enum DefaultDiscountList {
-    EARLY_REGISTRATION_DISCOUNT(new Discount("EARLY_REGISTRATION_DISCOUNT",20L,DiscountType.PERCENTAGE,
+    EARLY_REGISTRATION_DISCOUNT(new Discount("EARLY_REGISTRATION_DISCOUNT", DiscountType.PERCENTAGE,
                                 new ArrayList<>() {{
-                                    add(TypeOfUser.PERSONEL);
-                                    add(TypeOfUser.IHVAN);
-                                    add(TypeOfUser.STANDART);
+                                    add(UserType.PERSONEL);
+                                    add(UserType.IHVAN);
+                                    add(UserType.STANDART);
                                 }},
-                                null,
-                                new ArrayList<>() {{
-                                    add(PreschoolList.YUNUS_EMRE_LALEBAHCESI.name());
-                                    add((PreschoolList.YUNUS_EMRE_LALEBAHCESI).name());
-                                }} )),
-    PERSONNEL_DISCOUNT(new Discount("PERSONNEL_DISCOUNT",50L,DiscountType.PERCENTAGE,
+                                null, new HashMap<String, Long >() {{
+                                put(PreschoolList.YUNUS_EMRE_LALEBAHCESI.name(), 20L);
+                                put((PreschoolList.MADENLER_LALEBAHCESI).name(), 20L);
+    }} )),
+
+    PERSONNEL_DISCOUNT(new Discount("PERSONNEL_DISCOUNT",DiscountType.PERCENTAGE,
                                     new ArrayList<>() {{
-                                        add(TypeOfUser.PERSONEL);
+                                        add(UserType.PERSONEL);
                                     }},
                                     null,
-                                    new ArrayList<>() {{
-                                        add(PreschoolList.MADENLER_LALEBAHCESI.name());
-                                        add((PreschoolList.YUNUS_EMRE_LALEBAHCESI).name());
-                                    }} )),
-    IHVAN_DISCOUNT(new Discount("IHVAN_DISCOUNT",5L,DiscountType.PERCENTAGE,
+                                    new HashMap<String, Long >() {{
+                                        put(PreschoolList.YUNUS_EMRE_LALEBAHCESI.name(), 50L);
+                                        put((PreschoolList.MADENLER_LALEBAHCESI).name(), 50L);
+            }} )),
+    IHVAN_DISCOUNT(new Discount("IHVAN_DISCOUNT",DiscountType.PERCENTAGE,
                                 new ArrayList<>() {{
-                                    add(TypeOfUser.IHVAN);
+                                    add(UserType.IHVAN);
                                 }},
                                 null,
-                                new ArrayList<>() {{
-                                    add(PreschoolList.MADENLER_LALEBAHCESI.name());
-                                    add((PreschoolList.YUNUS_EMRE_LALEBAHCESI.name()));
+                                new HashMap<String, Long >() {{
+                                    put(PreschoolList.YUNUS_EMRE_LALEBAHCESI.name(), 5L);
+                                    put((PreschoolList.MADENLER_LALEBAHCESI).name(), 5L);
                                 }} )),
-    SAGLIKSEN_DISCOUNT(new Discount("SAGLIKSEN_DISCOUNT",10L,DiscountType.PERCENTAGE,
+    SAGLIKSEN_DISCOUNT(new Discount("SAGLIKSEN_DISCOUNT",DiscountType.PERCENTAGE,
                                     new ArrayList<>() {{
-                                        add(TypeOfUser.IHVAN);
-                                        add(TypeOfUser.STANDART);
+                                        add(UserType.IHVAN);
+                                        add(UserType.STANDART);
                                     }},
                                     OrganizationNames.SAGLIKSEN,
-                                    new ArrayList<>() {{
-                                        add(PreschoolList.MADENLER_LALEBAHCESI.name());
+                                    new HashMap<String, Long >() {{
+                                        put(PreschoolList.YUNUS_EMRE_LALEBAHCESI.name(), 10L);
                                     }} )),
-    ANADOLU_DISCOUNT(new Discount("ANADOLU_DISCOUNT",100L,DiscountType.AMOUNT,
+    ANADOLU_DISCOUNT(new Discount("ANADOLU_DISCOUNT",DiscountType.AMOUNT,
                                     new ArrayList<>() {{
-                                        add(TypeOfUser.IHVAN);
-                                        add(TypeOfUser.STANDART);
+                                        add(UserType.IHVAN);
+                                        add(UserType.STANDART);
                                     }},
                                     OrganizationNames.ANADOLU,
-                                    new ArrayList<>() {{
-                                        add(PreschoolList.YUNUS_EMRE_LALEBAHCESI.name());
+                                    new HashMap<String, Long >() {{
+                                        put(PreschoolList.MADENLER_LALEBAHCESI.name(), 100L);
                                     }} )),;
 
     DefaultDiscountList(Discount discount) {

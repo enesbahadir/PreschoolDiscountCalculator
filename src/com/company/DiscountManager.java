@@ -8,40 +8,18 @@ import java.util.List;
  */
 public class DiscountManager {
 
-    static List<Discount> discountList;
-
-    /**
-     *
-     * @param preschool
-     * @return
-     */
-     public static List<Discount> setDefaultDiscountByPreschool(IPreschoolAccess preschool) {
-         discountList = new ArrayList<>();
-
-        for ( DefaultDiscountList defaultDiscount : DefaultDiscountList.values())
-        {
-            if( defaultDiscount.discount.getPreschoolNames().contains( preschool.getPreschoolName()))
-            {
-                discountList.add( defaultDiscount.discount);
-            }
+    public static void addNewDiscount (Discount discount)
+    {
+        if (Database.discounts.contains(discount)) {
+            return;
         }
-        return discountList;
+        Database.discounts.add(discount);
     }
 
-    /**
-     *
-     * @return
-     */
-    public static List<Discount> setDefaultDiscount() {
-        discountList = new ArrayList<>();
-
-        for ( DefaultDiscountList defaultDiscount : DefaultDiscountList.values())
-        {
-            discountList.add( defaultDiscount.discount);
-        }
-        return discountList;
+    public static void deleteDiscount (Discount discount)
+    {
+        if (Database.discounts.contains(discount))
+            Database.discounts.remove(discount);
     }
-
-
 
 }

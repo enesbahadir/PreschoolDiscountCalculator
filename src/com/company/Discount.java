@@ -1,43 +1,34 @@
 package com.company;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * İndirimlere ait bilgilerin saklandığı sınıftır.
  */
 public class Discount {
 
-    private String name;
-    private long value;
+    private String discountName;
     private DiscountType discountType;
-    private List<TypeOfUser> typeOfUser;
+    private List<UserType> userType;
     private OrganizationNames organizationName;
-    private List<String> preschoolNames;
+    private Map<String, Long > preschoolNamesAndTheirDiscounts;
 
-    public Discount(String name, long value, DiscountType discountType, List<TypeOfUser> typeOfUser,
-                    OrganizationNames organizationName, List<String> preschoolNames) {
-        this.name = name;
-        this.value = value;
+    public Discount(String discountName, DiscountType discountType, List<UserType> userType,
+                    OrganizationNames organizationName, Map<String, Long> preschoolNamesAndTheirDiscounts) {
+        this.discountName = discountName;
         this.discountType = discountType;
-        this.typeOfUser = typeOfUser;
+        this.userType = userType;
         this.organizationName = organizationName;
-        this.preschoolNames = preschoolNames;
+        this.preschoolNamesAndTheirDiscounts = preschoolNamesAndTheirDiscounts;
     }
 
-    public String getName() {
-        return name;
+    public String getDiscountName() {
+        return discountName;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public long getValue() {
-        return value;
-    }
-
-    public void setValue(long value) {
-        this.value = value;
+    public void setDiscountName(String discountName) {
+        this.discountName = discountName;
     }
 
     public DiscountType getDiscountType() {
@@ -48,12 +39,12 @@ public class Discount {
         this.discountType = discountType;
     }
 
-    public List<TypeOfUser> getTypeOfUser() {
-        return typeOfUser;
+    public List<UserType> getTypeOfUser() {
+        return userType;
     }
 
-    public void setTypeOfUser(List<TypeOfUser> typeOfUser) {
-        this.typeOfUser = typeOfUser;
+    public void setTypeOfUser(List<UserType> userType) {
+        this.userType = userType;
     }
 
     public OrganizationNames getOrganizationName() {
@@ -64,12 +55,11 @@ public class Discount {
         this.organizationName = organizationName;
     }
 
-    public List<String> getPreschoolNames() {
-        return preschoolNames;
+    public Map<String, Long> getPreschoolNamesAndTheirDiscounts() {
+        return preschoolNamesAndTheirDiscounts;
     }
 
-    public void setPreschoolNames(List<String> preschoolNames) {
-        this.preschoolNames = preschoolNames;
+    public void setPreschoolNamesAndTheirDiscounts(Map<String, Long> preschoolNamesAndTheirDiscounts) {
+        this.preschoolNamesAndTheirDiscounts = preschoolNamesAndTheirDiscounts;
     }
-
 }

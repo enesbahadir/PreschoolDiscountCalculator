@@ -20,13 +20,13 @@ public interface IUserAccess {
      *
      * @return
      */
-    TypeOfUser getTypeOfUser();
+    UserType getTypeOfUser();
 
     /**
      *
-     * @param typeOfUser
+     * @param userType
      */
-    void setTypeOfUser(TypeOfUser typeOfUser);
+    void setTypeOfUser(UserType userType);
 
 
     OrganizationNames getOrganizationName() ;

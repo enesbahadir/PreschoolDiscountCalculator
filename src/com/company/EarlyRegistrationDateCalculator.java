@@ -21,8 +21,6 @@ public class EarlyRegistrationDateCalculator {
             e.printStackTrace();
         }
         Date toDay = new Date();
-        if(toDay.compareTo(earlyRegistrationDate) <= 0)
-            return true;
-        return false;
+        return toDay.compareTo(earlyRegistrationDate) <= 0;
     }
 }
